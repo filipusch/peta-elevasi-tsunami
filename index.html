@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Peta Elevasi Tsunami</title>
+  <title>Peta Elevasi & Risiko Tsunami</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-
   <style>
     body, html { margin: 0; padding: 0; height: 100%; }
     #map { width: 100%; height: 100%; }
@@ -21,22 +20,45 @@
 
   <!-- Tampilkan GeoJSON -->
   <script>
-    // Inisialisasi peta (zoom cukup untuk lihat seluruh Indonesia)
-    var map = L.map('map').setView([-2.5, 118], 5); 
+    var map = L.map('map').setView([-2.5, 118], 5); // Fokus Indonesia
 
-    // Tambahkan layer OpenStreetMap
+    // Tambahkan peta dasar
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '© OpenStreetMap contributors'
     }).addTo(map);
 
-    // Ambil dan tampilkan file GeoJSON
+    // Warna berdasarkan risiko
+    function getColor(risk) {
+      return risk === "Tinggi" ? "#e63946" :
+             risk === "Sedang" ? "#f4a261" :
+             risk === "Rendah" ? "#2a9d8f" :
+                                 "#ccc";
+    }
+
+    // Style per wilayah
+    function style(feature) {
+      return {
+        fillColor: getColor(feature.properties.risk),
+        weight: 1,
+        opacity: 1,
+        color: 'white',
+        dashArray: '3',
+        fillOpacity: 0.6
+      };
+    }
+
+    // Ambil GeoJSON
     fetch('data/indonesia-tsunami.geojson')
       .then(response => response.json())
       .then(data => {
         L.geoJSON(data, {
+          style: style,
           onEachFeature: function (feature, layer) {
             const props = feature.properties;
-            const popup = `<b>${props.kota}</b><br>Ketinggian: ${props.ketinggian} m`;
+            const popup = `
+              <b>${props.name}</b><br>
+              Risiko tsunami: <b>${props.risk}</b>
+            `;
             layer.bindPopup(popup);
           }
         }).addTo(map);
