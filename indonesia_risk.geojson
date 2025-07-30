@@ -1,0 +1,170 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Banda Aceh",
+        "risk": "Tinggi"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[95.3, 5.6], [95.4, 5.6], [95.4, 5.5], [95.3, 5.5], [95.3, 5.6]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Padang",
+        "risk": "Tinggi"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[100.35, -0.9], [100.45, -0.9], [100.45, -1.0], [100.35, -1.0], [100.35, -0.9]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Palu",
+        "risk": "Tinggi"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[119.8, -0.85], [119.9, -0.85], [119.9, -0.95], [119.8, -0.95], [119.8, -0.85]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Manokwari",
+        "risk": "Tinggi"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[134.0, -0.85], [134.1, -0.85], [134.1, -0.95], [134.0, -0.95], [134.0, -0.85]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Jayapura",
+        "risk": "Tinggi"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[140.65, -2.5], [140.75, -2.5], [140.75, -2.6], [140.65, -2.6], [140.65, -2.5]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kendari",
+        "risk": "Tinggi"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[122.45, -3.9], [122.55, -3.9], [122.55, -4.0], [122.45, -4.0], [122.45, -3.9]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambon",
+        "risk": "Tinggi"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[128.15, -3.65], [128.25, -3.65], [128.25, -3.75], [128.15, -3.75], [128.15, -3.65]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ternate",
+        "risk": "Sedang"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[127.3, 0.8], [127.4, 0.8], [127.4, 0.7], [127.3, 0.7], [127.3, 0.8]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kupang",
+        "risk": "Sedang"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[123.55, -10.1], [123.65, -10.1], [123.65, -10.2], [123.55, -10.2], [123.55, -10.1]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bengkulu",
+        "risk": "Sedang"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[102.25, -3.8], [102.35, -3.8], [102.35, -3.9], [102.25, -3.9], [102.25, -3.8]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Banten Selatan",
+        "risk": "Sedang"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[105.9, -6.5], [106.0, -6.5], [106.0, -6.6], [105.9, -6.6], [105.9, -6.5]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Jakarta Utara",
+        "risk": "Rendah"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[106.8, -6.1], [106.9, -6.1], [106.9, -6.2], [106.8, -6.2], [106.8, -6.1]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Surabaya",
+        "risk": "Rendah"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[112.7, -7.2], [112.8, -7.2], [112.8, -7.3], [112.7, -7.3], [112.7, -7.2]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Makassar",
+        "risk": "Rendah"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[119.4, -5.1], [119.5, -5.1], [119.5, -5.2], [119.4, -5.2], [119.4, -5.1]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Denpasar",
+        "risk": "Rendah"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[115.2, -8.6], [115.3, -8.6], [115.3, -8.7], [115.2, -8.7], [115.2, -8.6]]]
+      }
+    }
+  ]
+}
