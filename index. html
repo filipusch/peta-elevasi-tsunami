@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Peta Interaktif Elevasi Tsunami</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Link CSS Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" 
+        integrity="sha512-o9N1j8Mk2dy6J2YhtHYTqWr5GvF2cdu1gXtuvZLw62K0EABhr/VPCh2Aezoj0zK9kpCd8Dxtzj7fL38sMjLwYw=="
+        crossorigin=""/>
+  <style>
+    /* Gaya tampilan dasar */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    header {
+      padding: 10px;
+      text-align: center;
+      background: #007ACC;
+      color: white;
+    }
+    #map {
+      height: 90vh;
+      width: 100%;
+    }
+    #info {
+      padding: 10px;
+      background: #f0f0f0;
+      border-top: 1px solid #ddd;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Peta Interaktif Elevasi Tsunami</h1>
+    <p>Klik pada peta untuk mengetahui ketinggian suatu lokasi.</p>
+  </header>
+  <div id="map"></div>
+  <div id="info">Tunggu... Data elevasi akan muncul ketika Anda klik di peta.</div>
+
+  <!-- Script Leaflet -->
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+          integrity="sha512-YFObJ1oTmZIvj0OzpgF4IJhb1tp3xvGcOZt1SpEgxv40uaXDgQvxd5nE3K4az0HmOJxIDWLZHn3av5/ptFf9Ug=="
+          crossorigin=""></script>
+  <script>
+    // Inisialisasi peta dengan koordinat awal di Indonesia (misal: pusat Indonesia)
+    const map = L.map('map').setView([-2.5, 118], 5);
+
+    // Tambahkan layer peta dari OpenStreetMap
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Elemen untuk menampilkan info elevasi
+    const info = document.getElementById('info');
+
+    // Fungsi untuk mengambil data elevasi dari OpenTopoData
+    function getElevation(lat, lng) {
+      const apiURL = `https://api.opentopodata.org/v1/srtm90m?locations=${lat},${lng}`;
+      fetch(apiURL)
+        .then(response => response.json())
+        .then(data => {
+          if (data && data.results && data.results.length > 0 && data.results[0].elevation !== null) {
+            const elevation = data.results[0].elevation;
+            info.innerHTML = `<strong>Koordinat:</strong> ${lat.toFixed(5)}, ${lng.toFixed(5)}<br>
+                              <strong>Ketinggian:</strong> ${elevation} meter di atas permukaan laut.`;
+          } else {
+            info.innerHTML = "Data elevasi tidak tersedia di lokasi ini.";
+          }
+        })
+        .catch(error => {
+          console.error(error);
+          info.innerHTML = "Gagal memuat data elevasi.";
+        });
+    }
+
+    // Event klik pada peta
+    map.on('click', function(e) {
+      const lat = e.latlng.lat;
+      const lng = e.latlng.lng;
+      info.innerHTML = `Mengambil data elevasi untuk koordinat: ${lat.toFixed(5)}, ${lng.toFixed(5)} ...`;
+      getElevation(lat, lng);
+    });
+  </script>
+</body>
+</html>
