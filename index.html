@@ -19,19 +19,31 @@
   <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
+  <!-- Tampilkan GeoJSON -->
   <script>
-    // Inisialisasi peta
-    var map = L.map('map').setView([-6.2, 106.8], 6); // Jakarta
+    // Inisialisasi peta (zoom cukup untuk lihat seluruh Indonesia)
+    var map = L.map('map').setView([-2.5, 118], 5); 
 
     // Tambahkan layer OpenStreetMap
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '© OpenStreetMap contributors'
     }).addTo(map);
 
-    // Contoh marker
-    L.marker([-6.2, 106.8]).addTo(map)
-      .bindPopup("Ini Jakarta.<br>Wilayah rawan tsunami?")
-      .openPopup();
+    // Ambil dan tampilkan file GeoJSON
+    fetch('data/indonesia-tsunami.geojson')
+      .then(response => response.json())
+      .then(data => {
+        L.geoJSON(data, {
+          onEachFeature: function (feature, layer) {
+            const props = feature.properties;
+            const popup = `<b>${props.kota}</b><br>Ketinggian: ${props.ketinggian} m`;
+            layer.bindPopup(popup);
+          }
+        }).addTo(map);
+      })
+      .catch(error => {
+        console.error("Gagal memuat GeoJSON:", error);
+      });
   </script>
 </body>
 </html>
